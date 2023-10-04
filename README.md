@@ -3,12 +3,15 @@
 [Introduction](#introduction)
 - Application Overview
 - Flowchart
-- Blockdiagram
 - [C code](#c-code)
 - [Assembly code conversion](#assembly-code-conversion)
   - [Unique instructions in assembly code](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/edit/main/README.md#unique-instructions-in-assembly-code)
 
 ## Introduction 
+### Application Overview
+  I am trying to build a smart switch on detecting two claps from the user. Initially we set the sensor threshold so that any sound heard above the threshold is detected as high by the sensor and the same is sent to the processor, processor waits for the seecond high signal to turn the switch on and if the switch is already on then the switch is set to low upon to two consecutive high sound levels. I have set the minimum time delay between 2 consecutive claps as 200 ms so that the processor is not detecting the same clap twice before the sound is elapsed and the maximum delay between the claps is set to 500 ms before any action is taking place. The output of the switch can be connected to any home appliance such as light, fan etc using relays or motors at the output.
+
+### Flowchart  
 
 ### C code  
 C code for the Clap switch is shown below:  
