@@ -1,11 +1,41 @@
 # Sound-based-smart-switch
 ## Table of Contents
-[Introduction](#introduction)
+[RISCV GNU tool chain](#riscv-gnu-tool-chain)  
+[Introduction to project](#introduction)
 - [Application Overview](#application-overview)
+- [Block diagram](#block-diagram)
 - [Flowchart](#flowchart)
 - [C code](#c-code)
 - [Assembly code conversion](#assembly-code-conversion)
   - [Unique instructions in assembly code](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/edit/main/README.md#unique-instructions-in-assembly-code)
+
+## RISCV GNU tool chain
+
+RISCV GNU tool chain is a C & C++ cross compiler. It has two modes: ELF/Newlib toolchain and Linux-ELF/glibc toolchain. We are using ELF/Newlib toolchain.
+
+We are building a custom RISCV based application core for a specific application for 32 bit processor. 
+
+Following are tools required to compile & execute the application:
+
+1. RISCV GNU toolchain with dependent libraries as specified in [RISCV-GNU-Toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain).
+
+2. Spike simulator - Spike is a functional RISC-V ISA simulator that implements a functional model of one or more RISC-V harts. [RISCV-SPIKE](https://github.com/riscv-software-src/riscv-isa-sim.git).
+
+### RISCV 32 bit compiler installation.
+
+```
+git clone https://github.com/riscv/riscv-gnu-toolchain --recursive
+mkdir riscv32-toolchain
+cd riscv-gnu-toolchain
+./configure --prefix=/home/bhargav/riscv32-toolchain/ --with-arch=rv32i --with-abi=ilp32
+sudo apt-get install libgmp-dev
+make
+```
+
+Access the riscv32-unknown-elf-gcc inside bin folder of riscv32-toolchain folder in home folder of user as shown.
+```
+/home/bhargav/riscv32-toolchain/bin/riscv32-unknown-elf-gcc --version
+```
 
 ## Introduction 
 ### Application Overview
