@@ -107,8 +107,16 @@ int main()
     return (0);
 }
 ```
+C code can be compiled by running the below commands in terminal -  
+```
+gcc clap_switch.c
+./a.out
+```
 
-Test file for the above C code can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/testfiles/clap_switch_test_file.c)
+Test file for the above C code can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/testfiles/clap_switch_test_file.c).   
+Below is the output seen upon execution of the test file using gcc compiler-  
+![](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/images/clap_switch_test_output.png)  
+
 
 ### Assembly code Conversion  
 
@@ -118,9 +126,17 @@ Compile the c program using RISCV-V GNU Toolchain and dump the assembly code int
 riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o clap_switch.o clap_switch.c
 riscv64-unknown-elf-objdump -d clap_switch.o|less > obj_dump.txt
 ```
-The written obj_dump file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/obj_dump.txt).  
+The written obj_dump.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/obj_dump.txt).  
 
 
 **Note** 
-In the above c program, digital read and digital write functions are commented to show how the inputs and outputs are given. For now, we need only the logic which controls the clap_switch.
+In the above c program, digital read and digital write functions are commented to show how the inputs and outputs are given. For now, we need only the logic which controls the clap_switch.  
+
+#### Unique instructions in assembly code  
+
+To get the number of instructions, run the python script file instruction_counter.py.  
+
+Suppose your assembly code contains instructions like addi, lw, sw, and so on. Running the instruction_counter.py on this dump_obj.txt would yield:  
+![](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/images/total_instructions_used.png)  
+
 
