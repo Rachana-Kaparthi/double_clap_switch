@@ -1,13 +1,13 @@
 # Sound-based-smart-switch
 ## Table of Contents
-[RISCV GNU tool chain](#riscv-gnu-tool-chain)  
-[Introduction to project](#introduction)
-- [Application Overview](#application-overview)
-- [Block diagram](#block-diagram)
-- [Flowchart](#flowchart)
-- [C code](#c-code)
-- [Assembly code conversion](#assembly-code-conversion)
-  - [Unique instructions in assembly code](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/edit/main/README.md#unique-instructions-in-assembly-code)
+- [RISCV GNU tool chain](#riscv-gnu-tool-chain)
+- [Introduction to project](#introduction)
+  - [Application Overview](#application-overview)
+  - [Block diagram](#block-diagram)
+  - [Flowchart](#flowchart)
+  - [C code](#c-code)
+  - [Assembly code conversion](#assembly-code-conversion)
+    - [Unique instructions in assembly code](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/edit/main/README.md#unique-instructions-in-assembly-code)
 
 ## RISCV GNU tool chain
 
