@@ -1,14 +1,14 @@
 # Sound-based-smart-switch
 ## Table of Contents
-[Day 0](#day-0)
+[Introduction](#introduction)
 - Application Overview
 - Flowchart
 - Blockdiagram
-- C code
-- Assembly code conversion
-  - Unique instructions in assembly code
+- [C code](#c-code)
+- [Assembly code conversion](#assembly-code-conversion)
+  - [Unique instructions in assembly code](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/edit/main/README.md#unique-instructions-in-assembly-code)
 
-## Day 0   
+## Introduction 
 
 ### C code  
 C code for the Clap switch is shown below:  
@@ -84,7 +84,7 @@ void read()
                 offClap1 = 0;
             }
         }
-        delay(200);
+        delay(200); //// time to wait after a clap (prevents detecting lots of claps as 1 signal)
     }
 
     if (firstClap == 1 && secondClap == 0 && (clock() - firstClaptime > DIFF_MAX))
