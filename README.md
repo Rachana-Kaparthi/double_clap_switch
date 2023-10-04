@@ -12,12 +12,11 @@
   I am trying to build a smart switch on detection of two consecutive claps from the user. Initially we set the sensor threshold so that any sound heard above the threshold is detected as high by the sensor and the same is sent to the processor, processor waits for the seecond high signal to turn the switch on and if the switch is already on then the switch is set to low upon to two consecutive high sound levels. I have set the minimum time delay between 2 consecutive claps as 200 ms so that the processor is not detecting the same clap twice before the sound is elapsed and the maximum delay between the claps is set to 500 ms before any action is taking place. The output of the switch can be connected to any home appliance such as light, fan etc using relays or motors at the output.
 
 ### Flowchart of the code
-![](![clap_switch](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/assets/140998470/f071487a-66b3-4e08-a2cd-db3a35716b89)  
+![clap_switch](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/assets/140998470/f071487a-66b3-4e08-a2cd-db3a35716b89)  
 
 ### C code  
 C code for the Clap switch is shown below:  
 ```
-#include <stdio.h>
 #include <time.h>
 
 #define DIFF_MAX 500000
