@@ -1,4 +1,4 @@
-with open('obj_dump.txt', 'r') as file:
+with open('clap_switch_obj32_1.txt', 'r') as file:
     assembly_code = file.read()
 lines = assembly_code.split('\n')
 unique_instructions = set()
