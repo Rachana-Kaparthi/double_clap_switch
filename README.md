@@ -27,14 +27,14 @@ Following are tools required to compile & execute the application:
 git clone https://github.com/riscv/riscv-gnu-toolchain --recursive
 mkdir riscv32-toolchain
 cd riscv-gnu-toolchain
-./configure --prefix=/home/bhargav/riscv32-toolchain/ --with-arch=rv32i --with-abi=ilp32
+./configure --prefix=/home/rachana/riscv32-toolchain/ --with-arch=rv32i --with-abi=ilp32
 sudo apt-get install libgmp-dev
 make
 ```
 
 Access the riscv32-unknown-elf-gcc inside bin folder of riscv32-toolchain folder in home folder of user as shown.
 ```
-/home/bhargav/riscv32-toolchain/bin/riscv32-unknown-elf-gcc --version
+/home/rachana/riscv32-toolchain/bin/riscv32-unknown-elf-gcc --version
 ```
 
 ## Introduction 
@@ -158,8 +158,8 @@ Below is the output seen upon execution of the test file using gcc compiler-
 Compile the c program using RISCV-V GNU Toolchain and dump the assembly code into obj_dump.txt using the below commands.  
 
 ```
-riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o clap_switch.o clap_switch.c
-riscv32-unknown-elf-objdump -d clap_switch.o|less > obj_dump.txt
+riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o ./clap_switch clap_switch.c
+riscv32-unknown-elf-objdump -d clap_switch|less > obj_dump.txt
 ```
 The written obj_dump.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/obj_dump.txt).  
 
