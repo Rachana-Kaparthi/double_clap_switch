@@ -53,7 +53,13 @@ Access the riscv32-unknown-elf-gcc inside bin folder of riscv32-toolchain folder
 ![clap_switch](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/assets/140998470/f071487a-66b3-4e08-a2cd-db3a35716b89)  
 
 ### C code  
-C code for the Clap switch is shown below:  
+**Register architecture of x30 for GPIOs:**  
+
+x30[0] - input data from sensor  
+
+x30[1] - output to switch
+
+Code snippet of Clap switch is shown below:  
 ```
 
 #include <time.h>
@@ -190,9 +196,9 @@ Compile the c program using RISCV-V GNU Toolchain and dump the assembly code int
 
 ```
 riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o ./clap_switch clap_switch.c
-riscv32-unknown-elf-objdump -d clap_switch|less > obj_dump.txt
+riscv32-unknown-elf-objdump -d clap_switch|less > clap_switch_obj32_1.txt
 ```
-The written obj_dump.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/clap_switch_obj32_1.txt).  
+The written clap_switch_obj32_1.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/clap_switch_obj32_1.txt).  
 
 
 **Note** 
