@@ -49,6 +49,7 @@ Access the riscv32-unknown-elf-gcc inside bin folder of riscv32-toolchain folder
 ### C code  
 C code for the Clap switch is shown below:  
 ```
+
 #include <time.h>
 
 #define DIFF_MAX 500000
@@ -59,7 +60,30 @@ int offClap1 = 0;
 clock_t firstClaptime;
 clock_t secondClaptime;
 clock_t offClap1time;
+void output(int value);
+int sensor_data();
 
+int sensor_data()
+{
+    int data;
+    // Read sensor data into x30
+    asm (
+            "and %0, x30, 1"
+            : "=r"(data)
+        );
+    return data;
+}
+void output(int value)
+{
+    unsigned int mask = 0xFFFFFFFD;
+    int value1 = value*2;
+    asm(
+        "and x30,x30, %1\n\t"
+        "or x30,x30, %0\n\t"
+        :"=r"(value1)
+        :"r"(mask)
+    );
+}
 int delay(int number_of_milli_seconds)
 {
     // Converting time into milli_seconds
@@ -79,8 +103,8 @@ int delay(int number_of_milli_seconds)
 void read()
 {
     // sensor_input = digital_read(0);
-    int sensor_input = 1;
-    int output;
+    int sensor_input = sensor_data();
+   // int output;
     if (sensor_input == 1)
     {
         if (firstClap == 0)
@@ -93,7 +117,7 @@ void read()
             if (clock() - firstClaptime < DIFF_MAX)
             {
                 secondClap = 1;
-                output = 1;
+                output(1);
                 // digitalWrite(3, output);
             }
             else
@@ -114,12 +138,12 @@ void read()
                 {
                     firstClap = 0;
                     secondClap = 0;
-                    output = 0; // digitalwrite(3,output);
+                    output(0); // digitalwrite(3,output);
                 }
                 offClap1 = 0;
             }
         }
-        delay(200); //// time to wait after a clap (prevents detecting lots of claps as 1 signal)
+        delay(200);
     }
 
     if (firstClap == 1 && secondClap == 0 && (clock() - firstClaptime > DIFF_MAX))
@@ -141,6 +165,7 @@ int main()
 
     return (0);
 }
+
 ```
 C code can be compiled by running the below commands in terminal -  
 ```
