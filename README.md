@@ -27,6 +27,9 @@ Following are tools required to compile & execute the application:
 git clone https://github.com/riscv/riscv-gnu-toolchain --recursive
 mkdir riscv32-toolchain
 cd riscv-gnu-toolchain
+gedit ~/.bashrc
+export PATH="/home/rachana/riscv32-toolchain/bin:$PATH" // Add this to your path variable
+source ~/.bashrc
 ./configure --prefix=/home/rachana/riscv32-toolchain/ --with-arch=rv32i --with-abi=ilp32
 sudo apt-get install libgmp-dev
 make
