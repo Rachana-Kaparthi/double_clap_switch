@@ -171,7 +171,32 @@ In the above c program, digital read and digital write functions are commented t
 
 To get the number of instructions, run the python script file instruction_counter.py.  
 
-Suppose your assembly code contains instructions like addi, lw, sw, and so on. Running the instruction_counter.py on this dump_obj.txt would yield:  
-![](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/images/total_instructions_used.png)  
+Suppose your assembly code contains instructions like addi, lw, sw, and so on. Running the instruction_counter.py on this dump_obj.txt would yield: 
+
+```
+Number of different instructions: 20
+List of unique instructions:
+bnez
+li
+ret
+j
+sub
+mv
+bltu
+lw
+or
+bgeu
+jalr
+nop
+sw
+add
+mul
+auipc
+sll
+lui
+and
+bne
+```
+
 
 
