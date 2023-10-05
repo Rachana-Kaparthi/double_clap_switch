@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <time.h>
 
 #define DIFF_MAX 500000
