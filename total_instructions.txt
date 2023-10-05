@@ -1,20 +1,22 @@
-Number of different instructions: 18
+Number of different instructions: 20
 List of unique instructions:
-bltu
-add
-bgeu
-li
-lw
-addi
-auipc
-sw
-jalr
-lui
-j
-ret
-sub
-nop
-mul
-mv
 bnez
+li
+ret
+j
+sub
+mv
+bltu
+lw
+or
+bgeu
+jalr
+nop
+sw
+add
+mul
+auipc
+sll
+lui
+and
 bne
