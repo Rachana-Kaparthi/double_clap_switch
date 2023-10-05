@@ -161,7 +161,7 @@ Compile the c program using RISCV-V GNU Toolchain and dump the assembly code int
 riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o ./clap_switch clap_switch.c
 riscv32-unknown-elf-objdump -d clap_switch|less > obj_dump.txt
 ```
-The written obj_dump.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/obj_dump.txt).  
+The written obj_dump.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/clap_switch_obj32_1.txt).  
 
 
 **Note** 
