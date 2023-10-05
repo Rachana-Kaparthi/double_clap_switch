@@ -1,0 +1,228 @@
+
+clap_switch2:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <sensor_data>:
+   0:	fe010113          	add	sp,sp,-32
+   4:	00812e23          	sw	s0,28(sp)
+   8:	02010413          	add	s0,sp,32
+   c:	001f7793          	and	a5,t5,1
+  10:	fef42623          	sw	a5,-20(s0)
+  14:	fec42783          	lw	a5,-20(s0)
+  18:	00078513          	mv	a0,a5
+  1c:	01c12403          	lw	s0,28(sp)
+  20:	02010113          	add	sp,sp,32
+  24:	00008067          	ret
+
+00000028 <output>:
+  28:	fd010113          	add	sp,sp,-48
+  2c:	02812623          	sw	s0,44(sp)
+  30:	03010413          	add	s0,sp,48
+  34:	fca42e23          	sw	a0,-36(s0)
+  38:	ffd00793          	li	a5,-3
+  3c:	fef42623          	sw	a5,-20(s0)
+  40:	fdc42783          	lw	a5,-36(s0)
+  44:	00179793          	sll	a5,a5,0x1
+  48:	fef42423          	sw	a5,-24(s0)
+  4c:	fec42783          	lw	a5,-20(s0)
+  50:	00ff7f33          	and	t5,t5,a5
+  54:	00ff6f33          	or	t5,t5,a5
+  58:	fef42423          	sw	a5,-24(s0)
+  5c:	00000013          	nop
+  60:	02c12403          	lw	s0,44(sp)
+  64:	03010113          	add	sp,sp,48
+  68:	00008067          	ret
+
+0000006c <delay>:
+  6c:	fd010113          	add	sp,sp,-48
+  70:	02112623          	sw	ra,44(sp)
+  74:	02812423          	sw	s0,40(sp)
+  78:	03010413          	add	s0,sp,48
+  7c:	fca42e23          	sw	a0,-36(s0)
+  80:	fdc42703          	lw	a4,-36(s0)
+  84:	3e800793          	li	a5,1000
+  88:	02f707b3          	mul	a5,a4,a5
+  8c:	fef42623          	sw	a5,-20(s0)
+  90:	00000097          	auipc	ra,0x0
+  94:	000080e7          	jalr	ra # 90 <delay+0x24>
+  98:	fea42423          	sw	a0,-24(s0)
+  9c:	00000013          	nop
+
+000000a0 <.L5>:
+  a0:	00000097          	auipc	ra,0x0
+  a4:	000080e7          	jalr	ra # a0 <.L5>
+  a8:	00050693          	mv	a3,a0
+  ac:	fec42703          	lw	a4,-20(s0)
+  b0:	fe842783          	lw	a5,-24(s0)
+  b4:	00f707b3          	add	a5,a4,a5
+  b8:	fef6e4e3          	bltu	a3,a5,a0 <.L5>
+  bc:	00000013          	nop
+  c0:	00078513          	mv	a0,a5
+  c4:	02c12083          	lw	ra,44(sp)
+  c8:	02812403          	lw	s0,40(sp)
+  cc:	03010113          	add	sp,sp,48
+  d0:	00008067          	ret
+
+000000d4 <read>:
+  d4:	fe010113          	add	sp,sp,-32
+  d8:	00112e23          	sw	ra,28(sp)
+  dc:	00812c23          	sw	s0,24(sp)
+  e0:	02010413          	add	s0,sp,32
+  e4:	00000097          	auipc	ra,0x0
+  e8:	000080e7          	jalr	ra # e4 <read+0x10>
+  ec:	fea42623          	sw	a0,-20(s0)
+  f0:	fec42703          	lw	a4,-20(s0)
+  f4:	00100793          	li	a5,1
+  f8:	14f71863          	bne	a4,a5,248 <.L7>
+  fc:	000007b7          	lui	a5,0x0
+ 100:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 104:	02079463          	bnez	a5,12c <.L8>
+ 108:	000007b7          	lui	a5,0x0
+ 10c:	00100713          	li	a4,1
+ 110:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+ 114:	00000097          	auipc	ra,0x0
+ 118:	000080e7          	jalr	ra # 114 <read+0x40>
+ 11c:	00050713          	mv	a4,a0
+ 120:	000007b7          	lui	a5,0x0
+ 124:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+ 128:	1140006f          	j	23c <.L9>
+
+0000012c <.L8>:
+ 12c:	000007b7          	lui	a5,0x0
+ 130:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 134:	00100793          	li	a5,1
+ 138:	04f71e63          	bne	a4,a5,194 <.L10>
+ 13c:	000007b7          	lui	a5,0x0
+ 140:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 144:	04079863          	bnez	a5,194 <.L10>
+ 148:	00000097          	auipc	ra,0x0
+ 14c:	000080e7          	jalr	ra # 148 <.L8+0x1c>
+ 150:	00050713          	mv	a4,a0
+ 154:	000007b7          	lui	a5,0x0
+ 158:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 15c:	40f70733          	sub	a4,a4,a5
+ 160:	0007a7b7          	lui	a5,0x7a
+ 164:	11f78793          	add	a5,a5,287 # 7a11f <.L19+0x79e2f>
+ 168:	02e7e063          	bltu	a5,a4,188 <.L11>
+ 16c:	000007b7          	lui	a5,0x0
+ 170:	00100713          	li	a4,1
+ 174:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+ 178:	00100513          	li	a0,1
+ 17c:	00000097          	auipc	ra,0x0
+ 180:	000080e7          	jalr	ra # 17c <.L8+0x50>
+ 184:	0b80006f          	j	23c <.L9>
+
+00000188 <.L11>:
+ 188:	000007b7          	lui	a5,0x0
+ 18c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+ 190:	0ac0006f          	j	23c <.L9>
+
+00000194 <.L10>:
+ 194:	000007b7          	lui	a5,0x0
+ 198:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 19c:	00100793          	li	a5,1
+ 1a0:	08f71e63          	bne	a4,a5,23c <.L9>
+ 1a4:	000007b7          	lui	a5,0x0
+ 1a8:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 1ac:	00100793          	li	a5,1
+ 1b0:	08f71663          	bne	a4,a5,23c <.L9>
+ 1b4:	000007b7          	lui	a5,0x0
+ 1b8:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 1bc:	02079463          	bnez	a5,1e4 <.L13>
+ 1c0:	000007b7          	lui	a5,0x0
+ 1c4:	00100713          	li	a4,1
+ 1c8:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+ 1cc:	00000097          	auipc	ra,0x0
+ 1d0:	000080e7          	jalr	ra # 1cc <.L10+0x38>
+ 1d4:	00050713          	mv	a4,a0
+ 1d8:	000007b7          	lui	a5,0x0
+ 1dc:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+ 1e0:	05c0006f          	j	23c <.L9>
+
+000001e4 <.L13>:
+ 1e4:	000007b7          	lui	a5,0x0
+ 1e8:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 1ec:	00100793          	li	a5,1
+ 1f0:	04f71663          	bne	a4,a5,23c <.L9>
+ 1f4:	00000097          	auipc	ra,0x0
+ 1f8:	000080e7          	jalr	ra # 1f4 <.L13+0x10>
+ 1fc:	00050713          	mv	a4,a0
+ 200:	000007b7          	lui	a5,0x0
+ 204:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 208:	40f70733          	sub	a4,a4,a5
+ 20c:	0007a7b7          	lui	a5,0x7a
+ 210:	11f78793          	add	a5,a5,287 # 7a11f <.L19+0x79e2f>
+ 214:	02e7e063          	bltu	a5,a4,234 <.L14>
+ 218:	000007b7          	lui	a5,0x0
+ 21c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+ 220:	000007b7          	lui	a5,0x0
+ 224:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+ 228:	00000513          	li	a0,0
+ 22c:	00000097          	auipc	ra,0x0
+ 230:	000080e7          	jalr	ra # 22c <.L13+0x48>
+
+00000234 <.L14>:
+ 234:	000007b7          	lui	a5,0x0
+ 238:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+
+0000023c <.L9>:
+ 23c:	0c800513          	li	a0,200
+ 240:	00000097          	auipc	ra,0x0
+ 244:	000080e7          	jalr	ra # 240 <.L9+0x4>
+
+00000248 <.L7>:
+ 248:	000007b7          	lui	a5,0x0
+ 24c:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 250:	00100793          	li	a5,1
+ 254:	02f71e63          	bne	a4,a5,290 <.L15>
+ 258:	000007b7          	lui	a5,0x0
+ 25c:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 260:	02079863          	bnez	a5,290 <.L15>
+ 264:	00000097          	auipc	ra,0x0
+ 268:	000080e7          	jalr	ra # 264 <.L7+0x1c>
+ 26c:	00050713          	mv	a4,a0
+ 270:	000007b7          	lui	a5,0x0
+ 274:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 278:	40f70733          	sub	a4,a4,a5
+ 27c:	0007a7b7          	lui	a5,0x7a
+ 280:	12078793          	add	a5,a5,288 # 7a120 <.L19+0x79e30>
+ 284:	00e7f663          	bgeu	a5,a4,290 <.L15>
+ 288:	000007b7          	lui	a5,0x0
+ 28c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+
+00000290 <.L15>:
+ 290:	000007b7          	lui	a5,0x0
+ 294:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+ 298:	00100793          	li	a5,1
+ 29c:	02f71863          	bne	a4,a5,2cc <.L17>
+ 2a0:	00000097          	auipc	ra,0x0
+ 2a4:	000080e7          	jalr	ra # 2a0 <.L15+0x10>
+ 2a8:	00050713          	mv	a4,a0
+ 2ac:	000007b7          	lui	a5,0x0
+ 2b0:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+ 2b4:	40f70733          	sub	a4,a4,a5
+ 2b8:	0007a7b7          	lui	a5,0x7a
+ 2bc:	12078793          	add	a5,a5,288 # 7a120 <.L19+0x79e30>
+ 2c0:	00e7f663          	bgeu	a5,a4,2cc <.L17>
+ 2c4:	000007b7          	lui	a5,0x0
+ 2c8:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+
+000002cc <.L17>:
+ 2cc:	00000013          	nop
+ 2d0:	01c12083          	lw	ra,28(sp)
+ 2d4:	01812403          	lw	s0,24(sp)
+ 2d8:	02010113          	add	sp,sp,32
+ 2dc:	00008067          	ret
+
+000002e0 <main>:
+ 2e0:	ff010113          	add	sp,sp,-16
+ 2e4:	00112623          	sw	ra,12(sp)
+ 2e8:	00812423          	sw	s0,8(sp)
+ 2ec:	01010413          	add	s0,sp,16
+
+000002f0 <.L19>:
+ 2f0:	00000097          	auipc	ra,0x0
+ 2f4:	000080e7          	jalr	ra # 2f0 <.L19>
+ 2f8:	ff9ff06f          	j	2f0 <.L19>
