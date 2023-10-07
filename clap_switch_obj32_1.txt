@@ -1,5 +1,5 @@
 
-clap_switch2:     file format elf32-littleriscv
+clap_switch5:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -13,7 +13,7 @@ Disassembly of section .text:
   14:	fec42783          	lw	a5,-20(s0)
   18:	00078513          	mv	a0,a5
   1c:	01c12403          	lw	s0,28(sp)
-  20:	02010113          	add	sp,sp,32
+  20:	02010113          	add	sp,sp,32.L17
   24:	00008067          	ret
 
 00000028 <output>:
@@ -26,10 +26,10 @@ Disassembly of section .text:
   40:	fdc42783          	lw	a5,-36(s0)
   44:	00179793          	sll	a5,a5,0x1
   48:	fef42423          	sw	a5,-24(s0)
-  4c:	fec42783          	lw	a5,-20(s0)
-  50:	00ff7f33          	and	t5,t5,a5
-  54:	00ff6f33          	or	t5,t5,a5
-  58:	fef42423          	sw	a5,-24(s0)
+  4c:	fe842783          	lw	a5,-24(s0)
+  50:	fec42703          	lw	a4,-20(s0)
+  54:	00ef7f33          	and	t5,t5,a4
+  58:	00ff6f33          	or	t5,t5,a5
   5c:	00000013          	nop
   60:	02c12403          	lw	s0,44(sp)
   64:	03010113          	add	sp,sp,48
@@ -46,18 +46,23 @@ Disassembly of section .text:
   88:	02f707b3          	mul	a5,a4,a5
   8c:	fef42623          	sw	a5,-20(s0)
   90:	00000097          	auipc	ra,0x0
+			90: R_RISCV_CALL_PLT	clock
+			90: R_RISCV_RELAX	*ABS*
   94:	000080e7          	jalr	ra # 90 <delay+0x24>
   98:	fea42423          	sw	a0,-24(s0)
   9c:	00000013          	nop
 
 000000a0 <.L5>:
   a0:	00000097          	auipc	ra,0x0
+			a0: R_RISCV_CALL_PLT	clock
+			a0: R_RISCV_RELAX	*ABS*
   a4:	000080e7          	jalr	ra # a0 <.L5>
   a8:	00050693          	mv	a3,a0
   ac:	fec42703          	lw	a4,-20(s0)
   b0:	fe842783          	lw	a5,-24(s0)
   b4:	00f707b3          	add	a5,a4,a5
   b8:	fef6e4e3          	bltu	a3,a5,a0 <.L5>
+			b8: R_RISCV_BRANCH	.L5
   bc:	00000013          	nop
   c0:	00078513          	mv	a0,a5
   c4:	02c12083          	lw	ra,44(sp)
@@ -71,143 +76,282 @@ Disassembly of section .text:
   dc:	00812c23          	sw	s0,24(sp)
   e0:	02010413          	add	s0,sp,32
   e4:	00000097          	auipc	ra,0x0
+			e4: R_RISCV_CALL_PLT	sensor_data
+			e4: R_RISCV_RELAX	*ABS*
   e8:	000080e7          	jalr	ra # e4 <read+0x10>
   ec:	fea42623          	sw	a0,-20(s0)
   f0:	fec42703          	lw	a4,-20(s0)
   f4:	00100793          	li	a5,1
   f8:	14f71863          	bne	a4,a5,248 <.L7>
+			f8: R_RISCV_BRANCH	.L7
   fc:	000007b7          	lui	a5,0x0
+			fc: R_RISCV_HI20	firstClap
+			fc: R_RISCV_RELAX	*ABS*
  100:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			100: R_RISCV_LO12_I	firstClap
+			100: R_RISCV_RELAX	*ABS*
  104:	02079463          	bnez	a5,12c <.L8>
+			104: R_RISCV_BRANCH	.L8
  108:	000007b7          	lui	a5,0x0
+			108: R_RISCV_HI20	firstClap
+			108: R_RISCV_RELAX	*ABS*
  10c:	00100713          	li	a4,1
  110:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+			110: R_RISCV_LO12_S	firstClap
+			110: R_RISCV_RELAX	*ABS*
  114:	00000097          	auipc	ra,0x0
+			114: R_RISCV_CALL_PLT	clock
+			114: R_RISCV_RELAX	*ABS*
  118:	000080e7          	jalr	ra # 114 <read+0x40>
  11c:	00050713          	mv	a4,a0
  120:	000007b7          	lui	a5,0x0
+			120: R_RISCV_HI20	firstClaptime
+			120: R_RISCV_RELAX	*ABS*
  124:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+			124: R_RISCV_LO12_S	firstClaptime
+			124: R_RISCV_RELAX	*ABS*
  128:	1140006f          	j	23c <.L9>
+			128: R_RISCV_JAL	.L9
 
 0000012c <.L8>:
  12c:	000007b7          	lui	a5,0x0
+			12c: R_RISCV_HI20	firstClap
+			12c: R_RISCV_RELAX	*ABS*
  130:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			130: R_RISCV_LO12_I	firstClap
+			130: R_RISCV_RELAX	*ABS*
  134:	00100793          	li	a5,1
  138:	04f71e63          	bne	a4,a5,194 <.L10>
+			138: R_RISCV_BRANCH	.L10
  13c:	000007b7          	lui	a5,0x0
+			13c: R_RISCV_HI20	secondClap
+			13c: R_RISCV_RELAX	*ABS*
  140:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			140: R_RISCV_LO12_I	secondClap
+			140: R_RISCV_RELAX	*ABS*
  144:	04079863          	bnez	a5,194 <.L10>
+			144: R_RISCV_BRANCH	.L10
  148:	00000097          	auipc	ra,0x0
+			148: R_RISCV_CALL_PLT	clock
+			148: R_RISCV_RELAX	*ABS*
  14c:	000080e7          	jalr	ra # 148 <.L8+0x1c>
  150:	00050713          	mv	a4,a0
  154:	000007b7          	lui	a5,0x0
+			154: R_RISCV_HI20	firstClaptime
+			154: R_RISCV_RELAX	*ABS*
  158:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			158: R_RISCV_LO12_I	firstClaptime
+			158: R_RISCV_RELAX	*ABS*
  15c:	40f70733          	sub	a4,a4,a5
  160:	0007a7b7          	lui	a5,0x7a
  164:	11f78793          	add	a5,a5,287 # 7a11f <.L19+0x79e2f>
  168:	02e7e063          	bltu	a5,a4,188 <.L11>
+			168: R_RISCV_BRANCH	.L11
  16c:	000007b7          	lui	a5,0x0
+			16c: R_RISCV_HI20	secondClap
+			16c: R_RISCV_RELAX	*ABS*
  170:	00100713          	li	a4,1
  174:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+			174: R_RISCV_LO12_S	secondClap
+			174: R_RISCV_RELAX	*ABS*
  178:	00100513          	li	a0,1
  17c:	00000097          	auipc	ra,0x0
+			17c: R_RISCV_CALL_PLT	output
+			17c: R_RISCV_RELAX	*ABS*
  180:	000080e7          	jalr	ra # 17c <.L8+0x50>
  184:	0b80006f          	j	23c <.L9>
+			184: R_RISCV_JAL	.L9
 
 00000188 <.L11>:
  188:	000007b7          	lui	a5,0x0
+			188: R_RISCV_HI20	firstClap
+			188: R_RISCV_RELAX	*ABS*
  18c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			18c: R_RISCV_LO12_S	firstClap
+			18c: R_RISCV_RELAX	*ABS*
  190:	0ac0006f          	j	23c <.L9>
+			190: R_RISCV_JAL	.L9
 
 00000194 <.L10>:
  194:	000007b7          	lui	a5,0x0
+			194: R_RISCV_HI20	firstClap
+			194: R_RISCV_RELAX	*ABS*
  198:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			198: R_RISCV_LO12_I	firstClap
+			198: R_RISCV_RELAX	*ABS*
  19c:	00100793          	li	a5,1
  1a0:	08f71e63          	bne	a4,a5,23c <.L9>
+			1a0: R_RISCV_BRANCH	.L9
  1a4:	000007b7          	lui	a5,0x0
+			1a4: R_RISCV_HI20	secondClap
+			1a4: R_RISCV_RELAX	*ABS*
  1a8:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			1a8: R_RISCV_LO12_I	secondClap
+			1a8: R_RISCV_RELAX	*ABS*
  1ac:	00100793          	li	a5,1
  1b0:	08f71663          	bne	a4,a5,23c <.L9>
+			1b0: R_RISCV_BRANCH	.L9
  1b4:	000007b7          	lui	a5,0x0
+			1b4: R_RISCV_HI20	offClap1
+			1b4: R_RISCV_RELAX	*ABS*
  1b8:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			1b8: R_RISCV_LO12_I	offClap1
+			1b8: R_RISCV_RELAX	*ABS*
  1bc:	02079463          	bnez	a5,1e4 <.L13>
+			1bc: R_RISCV_BRANCH	.L13
  1c0:	000007b7          	lui	a5,0x0
+			1c0: R_RISCV_HI20	offClap1
+			1c0: R_RISCV_RELAX	*ABS*
  1c4:	00100713          	li	a4,1
  1c8:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+			1c8: R_RISCV_LO12_S	offClap1
+			1c8: R_RISCV_RELAX	*ABS*
  1cc:	00000097          	auipc	ra,0x0
+			1cc: R_RISCV_CALL_PLT	clock
+			1cc: R_RISCV_RELAX	*ABS*
  1d0:	000080e7          	jalr	ra # 1cc <.L10+0x38>
  1d4:	00050713          	mv	a4,a0
  1d8:	000007b7          	lui	a5,0x0
+			1d8: R_RISCV_HI20	offClap1time
+			1d8: R_RISCV_RELAX	*ABS*
  1dc:	00e7a023          	sw	a4,0(a5) # 0 <sensor_data>
+			1dc: R_RISCV_LO12_S	offClap1time
+			1dc: R_RISCV_RELAX	*ABS*
  1e0:	05c0006f          	j	23c <.L9>
+			1e0: R_RISCV_JAL	.L9
 
 000001e4 <.L13>:
  1e4:	000007b7          	lui	a5,0x0
+			1e4: R_RISCV_HI20	offClap1
+			1e4: R_RISCV_RELAX	*ABS*
  1e8:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			1e8: R_RISCV_LO12_I	offClap1
+			1e8: R_RISCV_RELAX	*ABS*
  1ec:	00100793          	li	a5,1
  1f0:	04f71663          	bne	a4,a5,23c <.L9>
+			1f0: R_RISCV_BRANCH	.L9
  1f4:	00000097          	auipc	ra,0x0
+			1f4: R_RISCV_CALL_PLT	clock
+			1f4: R_RISCV_RELAX	*ABS*
  1f8:	000080e7          	jalr	ra # 1f4 <.L13+0x10>
  1fc:	00050713          	mv	a4,a0
  200:	000007b7          	lui	a5,0x0
+			200: R_RISCV_HI20	offClap1time
+			200: R_RISCV_RELAX	*ABS*
  204:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			204: R_RISCV_LO12_I	offClap1time
+			204: R_RISCV_RELAX	*ABS*
  208:	40f70733          	sub	a4,a4,a5
  20c:	0007a7b7          	lui	a5,0x7a
  210:	11f78793          	add	a5,a5,287 # 7a11f <.L19+0x79e2f>
  214:	02e7e063          	bltu	a5,a4,234 <.L14>
+			214: R_RISCV_BRANCH	.L14
  218:	000007b7          	lui	a5,0x0
+			218: R_RISCV_HI20	firstClap
+			218: R_RISCV_RELAX	*ABS*
  21c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			21c: R_RISCV_LO12_S	firstClap
+			21c: R_RISCV_RELAX	*ABS*
  220:	000007b7          	lui	a5,0x0
+			220: R_RISCV_HI20	secondClap
+			220: R_RISCV_RELAX	*ABS*
  224:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			224: R_RISCV_LO12_S	secondClap
+			224: R_RISCV_RELAX	*ABS*
  228:	00000513          	li	a0,0
  22c:	00000097          	auipc	ra,0x0
+			22c: R_RISCV_CALL_PLT	output
+			22c: R_RISCV_RELAX	*ABS*
  230:	000080e7          	jalr	ra # 22c <.L13+0x48>
 
 00000234 <.L14>:
  234:	000007b7          	lui	a5,0x0
+			234: R_RISCV_HI20	offClap1
+			234: R_RISCV_RELAX	*ABS*
  238:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			238: R_RISCV_LO12_S	offClap1
+			238: R_RISCV_RELAX	*ABS*
 
 0000023c <.L9>:
  23c:	0c800513          	li	a0,200
  240:	00000097          	auipc	ra,0x0
+			240: R_RISCV_CALL_PLT	delay
+			240: R_RISCV_RELAX	*ABS*
  244:	000080e7          	jalr	ra # 240 <.L9+0x4>
 
 00000248 <.L7>:
  248:	000007b7          	lui	a5,0x0
+			248: R_RISCV_HI20	firstClap
+			248: R_RISCV_RELAX	*ABS*
  24c:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			24c: R_RISCV_LO12_I	firstClap
+			24c: R_RISCV_RELAX	*ABS*
  250:	00100793          	li	a5,1
  254:	02f71e63          	bne	a4,a5,290 <.L15>
+			254: R_RISCV_BRANCH	.L15
  258:	000007b7          	lui	a5,0x0
+			258: R_RISCV_HI20	secondClap
+			258: R_RISCV_RELAX	*ABS*
  25c:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			25c: R_RISCV_LO12_I	secondClap
+			25c: R_RISCV_RELAX	*ABS*
  260:	02079863          	bnez	a5,290 <.L15>
+			260: R_RISCV_BRANCH	.L15
  264:	00000097          	auipc	ra,0x0
+			264: R_RISCV_CALL_PLT	clock
+			264: R_RISCV_RELAX	*ABS*
  268:	000080e7          	jalr	ra # 264 <.L7+0x1c>
  26c:	00050713          	mv	a4,a0
  270:	000007b7          	lui	a5,0x0
+			270: R_RISCV_HI20	firstClaptime
+			270: R_RISCV_RELAX	*ABS*
  274:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			274: R_RISCV_LO12_I	firstClaptime
+			274: R_RISCV_RELAX	*ABS*
  278:	40f70733          	sub	a4,a4,a5
  27c:	0007a7b7          	lui	a5,0x7a
  280:	12078793          	add	a5,a5,288 # 7a120 <.L19+0x79e30>
  284:	00e7f663          	bgeu	a5,a4,290 <.L15>
+			284: R_RISCV_BRANCH	.L15
  288:	000007b7          	lui	a5,0x0
+			288: R_RISCV_HI20	firstClap
+			288: R_RISCV_RELAX	*ABS*
  28c:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			28c: R_RISCV_LO12_S	firstClap
+			28c: R_RISCV_RELAX	*ABS*
 
 00000290 <.L15>:
  290:	000007b7          	lui	a5,0x0
+			290: R_RISCV_HI20	offClap1
+			290: R_RISCV_RELAX	*ABS*
  294:	0007a703          	lw	a4,0(a5) # 0 <sensor_data>
+			294: R_RISCV_LO12_I	offClap1
+			294: R_RISCV_RELAX	*ABS*
  298:	00100793          	li	a5,1
  29c:	02f71863          	bne	a4,a5,2cc <.L17>
+			29c: R_RISCV_BRANCH	.L17
  2a0:	00000097          	auipc	ra,0x0
+			2a0: R_RISCV_CALL_PLT	clock
+			2a0: R_RISCV_RELAX	*ABS*
  2a4:	000080e7          	jalr	ra # 2a0 <.L15+0x10>
  2a8:	00050713          	mv	a4,a0
  2ac:	000007b7          	lui	a5,0x0
+			2ac: R_RISCV_HI20	offClap1time
+			2ac: R_RISCV_RELAX	*ABS*
  2b0:	0007a783          	lw	a5,0(a5) # 0 <sensor_data>
+			2b0: R_RISCV_LO12_I	offClap1time
+			2b0: R_RISCV_RELAX	*ABS*
  2b4:	40f70733          	sub	a4,a4,a5
  2b8:	0007a7b7          	lui	a5,0x7a
  2bc:	12078793          	add	a5,a5,288 # 7a120 <.L19+0x79e30>
  2c0:	00e7f663          	bgeu	a5,a4,2cc <.L17>
+			2c0: R_RISCV_BRANCH	.L17
  2c4:	000007b7          	lui	a5,0x0
+			2c4: R_RISCV_HI20	offClap1
+			2c4: R_RISCV_RELAX	*ABS*
  2c8:	0007a023          	sw	zero,0(a5) # 0 <sensor_data>
+			2c8: R_RISCV_LO12_S	offClap1
+			2c8: R_RISCV_RELAX	*ABS*
 
 000002cc <.L17>:
  2cc:	00000013          	nop
@@ -224,5 +368,8 @@ Disassembly of section .text:
 
 000002f0 <.L19>:
  2f0:	00000097          	auipc	ra,0x0
+			2f0: R_RISCV_CALL_PLT	read
+			2f0: R_RISCV_RELAX	*ABS*
  2f4:	000080e7          	jalr	ra # 2f0 <.L19>
  2f8:	ff9ff06f          	j	2f0 <.L19>
+			2f8: R_RISCV_JAL	.L19
