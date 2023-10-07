@@ -89,11 +89,12 @@ void output(int value)
 {
     unsigned int mask = 0xFFFFFFFD;
     int value1 = value*2;
-    asm(
+   asm volatile(
         "and x30,x30, %1\n\t"
         "or x30,x30, %0\n\t"
-        :"=r"(value1)
-        :"r"(mask)
+        :
+        :"r"(value1),"r"(mask)
+        :"x30" //cobbler list,indicating that x30 is modified
     );
 }
 int delay(int number_of_milli_seconds)
@@ -195,10 +196,10 @@ Below is the output seen upon execution of the test file using gcc compiler-
 Compile the c program using RISCV-V GNU Toolchain and dump the assembly code into obj_dump.txt using the below commands.  
 
 ```
-riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -o ./clap_switch clap_switch.c
-riscv32-unknown-elf-objdump -d clap_switch|less > clap_switch_obj32_1.txt
+riscv32-unknown-elf-gcc -c -mabi=ilp32 -march=rv32im -ffreestanding -nostdlib -o ./clap_switch clap_switch.c
+riscv32-unknown-elf-objdump -d -r clap_switch|less > assembly.txt
 ```
-The written clap_switch_obj32_1.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/clap_switch_obj32_1.txt).  
+The written assembly.txt file can be seen [here](https://github.com/Rachana-Kaparthi/Sound-based-smart-switch/blob/main/assembly.txt).  
 
 
 **Note** 
@@ -208,31 +209,31 @@ In the above c program, digital read and digital write functions are commented t
 
 To get the number of instructions, run the python script file instruction_counter.py.  
 
-Suppose your assembly code contains instructions like addi, lw, sw, and so on. Running the instruction_counter.py on this dump_obj.txt would yield: 
+Suppose your assembly code contains instructions like addi, lw, sw, and so on. Running the instruction_counter.py on this assembly.txt would yield: 
 
 ```
-Number of different instructions: 20
+umber of different instructions: 20
 List of unique instructions:
+add
+lw
+ret
+sub
+and
 bnez
 li
-ret
-j
-sub
-mv
-bltu
-lw
-or
-bgeu
 jalr
-nop
-sw
-add
 mul
+bgeu
+mv
+nop
+bne
+sw
+j
+lui
+or
+bltu
 auipc
 sll
-lui
-and
-bne
 ```
 
 
