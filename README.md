@@ -94,7 +94,7 @@ void output(int value)
         "or x30,x30, %0\n\t"
         :
         :"r"(value1),"r"(mask)
-        :"x30" //cobbler list,indicating that x30 is modified
+        :"x30" //clobber list,indicating that x30 is modified
     );
 }
 int delay(int number_of_milli_seconds)
