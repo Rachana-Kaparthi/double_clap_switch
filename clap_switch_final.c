@@ -16,7 +16,7 @@ int sensor_data()
 {
     int data;
     // Read sensor data into x30
-    asm (
+    asm volatile(
             "and %0, x30, 1"
             : "=r"(data)
         );
@@ -26,11 +26,12 @@ void output(int value)
 {
     unsigned int mask = 0xFFFFFFFD;
     int value1 = value*2;
-    asm(
+    asm volatile(
         "and x30,x30, %1\n\t"
         "or x30,x30, %0\n\t"
-        :"=r"(value1)
-        :"r"(mask)
+        :
+        :"r"(value1),"r"(mask)
+        :"x30" //cobbler list,indicating that x30 is modified
     );
 }
 int delay(int number_of_milli_seconds)
